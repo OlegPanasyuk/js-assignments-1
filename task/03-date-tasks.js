@@ -21,83 +21,105 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 export function parseDataFromRfc2822(value) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return new Date(value);
+  //throw new Error('Not implemented');
 }
 
 /**
- * Parses an ISO 8601 string date representation into date value
- * For ISO 8601 date specification refer to : https://en.wikipedia.org/wiki/ISO_8601
- *
- * @param {string} value
- * @return {date}
- *
- * @example :
- *    '2016-01-19T16:07:37+00:00'    => Date()
- *    '2016-01-19T08:07:37Z' => Date()
- */
+* Parses an ISO 8601 string date representation into date value
+* For ISO 8601 date specification refer to : https://en.wikipedia.org/wiki/ISO_8601
+*
+* @param {string} value
+* @return {date}
+*
+* @example :
+*    '2016-01-19T16:07:37+00:00'    => Date()
+*    '2016-01-19T08:07:37Z' => Date()
+*/
 export function parseDataFromIso8601(value) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return new Date(value);
+  //throw new Error('Not implemented');
 }
 
 
 /**
- * Returns true if specified date is leap year and false otherwise
- * Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
- *
- * @param {date} date
- * @return {bool}
- *
- * @example :
- *    Date(1900,1,1)    => false
- *    Date(2000,1,1)    => true
- *    Date(2001,1,1)    => false
- *    Date(2012,1,1)    => true
- *    Date(2015,1,1)    => false
- */
-export function isLeapYear(date) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+* Returns true if specified date is leap year and false otherwise
+* Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
+*
+* @param {date} date
+* @return {bool}
+*
+* @example :
+*    Date(1900,1,1)    => false
+*    Date(2000,1,1)    => true
+*    Date(2001,1,1)    => false
+*    Date(2012,1,1)    => true
+*    Date(2015,1,1)    => false
+*/
+export  function isLeapYear(date) {
+  let year = date.getFullYear(); 
+  if (year % 4 !== 0) {
+    return false;
+  } else if (year % 100 !== 0) {
+    return true;
+  } else if (year % 400 !== 0) {
+    return false;
+  } else return true;
+  //throw new Error('Not implemented');
 }
 
 
 /**
- * Returns the string represention of the timespan between two dates.
- * The format of output string is "HH:mm:ss.sss"
- *
- * @param {date} startDate
- * @param {date} endDate
- * @return {string}
- *
- * @example:
- *    Date(2000,1,1,10,0,0),  Date(2000,1,1,11,0,0)   => "01:00:00.000"
- *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,30,0)       => "00:30:00.000"
- *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,20)        => "00:00:20.000"
- *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
- *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
- */
+* Returns the string represention of the timespan between two dates.
+* The format of output string is "HH:mm:ss.sss"
+*
+* @param {date} startDate
+* @param {date} endDate
+* @return {string}
+*
+* @example:
+*    Date(2000,1,1,10,0,0),  Date(2000,1,1,11,0,0)   => "01:00:00.000"
+*    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,30,0)       => "00:30:00.000"
+*    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,20)        => "00:00:20.000"
+*    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
+*    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
+*/
 export function timeSpanToString(startDate, endDate) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  var span = new Date(endDate - startDate);
+  var temp ='';
+  temp += (span.getUTCHours() < 10) ? '0'+span.getUTCHours()+':' : span.getUTCHours()+':';
+  temp += (span.getUTCMinutes() < 10) ? '0'+span.getUTCMinutes()+':' : span.getUTCMinutes()+':';
+  temp += (span.getUTCSeconds() < 10) ? '0'+span.getUTCSeconds()+'.' : span.getUTCSeconds()+'.'; 
+  temp += (span.getUTCMilliseconds() < 10) ? '00'+span.getUTCMilliseconds() : span.getUTCMilliseconds(); 
+  return temp;
+  //throw new Error('Not implemented');
 }
 
 
 /**
- * Returns the angle (in radians) between the hands of an analog clock for the 
- * specified Greenwich time.
- * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
- *
- * @param {date} date
- * @return {number}
- *
- * @example:
- *    Date.UTC(2016,2,5, 0, 0) => 0
- *    Date.UTC(2016,3,5, 3, 0) => Math.PI/2
- *    Date.UTC(2016,3,5,18, 0) => Math.PI
- *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
- */
+* Returns the angle (in radians) between the hands of an analog clock for the 
+* specified Greenwich time.
+* If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
+*
+* @param {date} date
+* @return {number}
+*
+* @example:
+*    Date.UTC(2016,2,5, 0, 0) => 0
+*    Date.UTC(2016,3,5, 3, 0) => Math.PI/2
+*    Date.UTC(2016,3,5,18, 0) => Math.PI
+*    Date.UTC(2016,3,5,21, 0) => Math.PI/2
+*/
 export function angleBetweenClockHands(date) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  let d = new Date(date); 
+  const h = (d.getUTCHours()>12) ? d.getUTCHours() - 12 : d.getUTCHours();
+  const m = d.getUTCMinutes();
+  const a = Math.abs(0.5*(60*h-11*m)); 
+  const t = (a>180) ? 180 : 0;
+  return (a-t)/(180/Math.PI);
+  //throw new Error('Not implemented');
 }
+
+//console.log(angleBetweenClockHands(Date.UTC(2016,4,5, 9, 0)));
+
+

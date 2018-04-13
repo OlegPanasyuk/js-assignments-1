@@ -21,217 +21,232 @@
  *   5, 5  => 25
  */
 export function getRectangleArea(width, height) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return width*height;
+  
 }
 
 
 /**
- * Returns a circumference of circle given by radius.
- *
- * @param {number} radius
- * @return {number}
- *
- * @example:
- *   5    => 31.41592653589793
- *   3.14 => 19.729201864543903
- *   0    => 0
- */
+* Returns a circumference of circle given by radius.
+*
+* @param {number} radius
+* @return {number}
+*
+* @example:
+*   5    => 31.41592653589793
+*   3.14 => 19.729201864543903
+*   0    => 0
+*/
 export function getCicleCircumference(radius) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return Math.PI*2*radius;
+  
 }
 
 /**
- * Returns an average of two given numbers.
- *
- * @param {numder} value1
- * @param {number} value2
- * @return {number}
- *
- * @example:
- *   5, 5  => 5
- *  10, 0  => 5
- *  -3, 3  => 0
- */
+* Returns an average of two given numbers.
+*
+* @param {numder} value1
+* @param {number} value2
+* @return {number}
+*
+* @example:
+*   5, 5  => 5
+*  10, 0  => 5
+*  -3, 3  => 0
+*/
 export function getAverage(value1, value2) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return (value1/2 + value2/2);
+  
 }
 
 /**
- * Returns a distance beetween two points by cartesian coordinates.
- *
- * @param {number} x1
- * @param {number} y1
- * @param {number} x2
- * @param {number} y2
- *
- * @return {number}
- *
- * @example:
- *   (0,0) (0,1)    => 1
- *   (0,0) (1,0)    => 1
- *   (-5,0) (10,-10) => 18.027756377319946
- */
+* Returns a distance beetween two points by cartesian coordinates.
+*
+* @param {number} x1
+* @param {number} y1
+* @param {number} x2
+* @param {number} y2
+*
+* @return {number}
+*
+* @example:
+*   (0,0) (0,1)    => 1
+*   (0,0) (1,0)    => 1
+*   (-5,0) (10,-10) => 18.027756377319946
+*/
 export function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return Math.sqrt(Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2)); 
+  
 }
 
 /**
- * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
- *
- * @param {number} a
- * @param {number} b
- * @return {number}
- *
- * @example:
- *   5*x - 10 = 0    => 2
- *   x + 8 = 0       => -8
- *   5*x = 0         => 0
- */
+* Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
+*
+* @param {number} a
+* @param {number} b
+* @return {number}
+*
+* @example:
+*   5*x - 10 = 0    => 2
+*   x + 8 = 0       => -8
+*   5*x = 0         => 0
+*/
 export function getLinearEquationRoot(a, b) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return -b/a;
+  
 }
 
 
 /**
- * Returns an angle (in radians) between two vectors given by xi and yi, coordinates
- * in Cartesian plane
- * See details https://en.wikipedia.org/wiki/Euclidean_vector#Representations
- *
- * @param {number} x1
- * @param {number} y1
- * @param {number} x2
- * @param {number} y2
- * @return {number}
- *
- * @example:
- *   (1,0) (0,1)     => π/2
- *   (0,1) (0,-1)    => π
- *   (0,-1) (1,0)    => π/2
- *   (0,1) (0,1)     => 0
- *   (0,1) (1,2)     => 0
- */
+* Returns an angle (in radians) between two vectors given by xi and yi, coordinates
+* in Cartesian plane
+* See details https://en.wikipedia.org/wiki/Euclidean_vector#Representations
+*
+* @param {number} x1
+* @param {number} y1
+* @param {number} x2
+* @param {number} y2
+* @return {number}
+*
+* @example:
+*   (1,0) (0,1)     => π/2
+*   (0,1) (0,-1)    => π
+*   (0,-1) (1,0)    => π/2
+*   (0,1) (0,1)     => 0
+*   (0,1) (1,2)     => 0
+*/
 export function getAngleBetweenVectors(x1, y1, x2, y2) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  let sk = x1*x2+y1*y2;
+  let m1 = Math.sqrt(x1*x1+y1*y1);
+  let m2 = Math.sqrt(x2*x2+y2*y2);
+  return Math.acos(sk/(m1*m2));
+  
 }
 
 /**
- * Returns a last digit of a integer number.
- *
- * @param {number} value
- * @return {number}
- *
- * @example:
- *   100     => 0
- *    37     => 7
- *     5     => 5
- *     0     => 0
- */
+* Returns a last digit of a integer number.
+*
+* @param {number} value
+* @return {number}
+*
+* @example:
+*   100     => 0
+*    37     => 7
+*     5     => 5
+*     0     => 0
+*/
 export function getLastDigit(value) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  let s = value.toString();
+  //return value % 10;
+  return parseInt(s[s.length-1]);
+  //throw new Error('Not implemented');
 }
 
 
 /**
- * Returns a number by given string representation.
- *
- * @param {string} value
- * @return {number}
- *
- * @example:
- *    '100'     => 100
- *     '37'     => 37
- * '-525.5'     => -525.5
- */
+* Returns a number by given string representation.
+*
+* @param {string} value
+* @return {number}
+*
+* @example:
+*    '100'     => 100
+*     '37'     => 37
+* '-525.5'     => -525.5
+*/
 export function parseNumberFromString(value) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return Number.parseFloat(value);
+  //throw new Error('Not implemented');
 }
 
 /**
- * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
- *
- * @param {number} a
- * @param {number} b
- * @param {number} c
- * @return {number}
- *
- * @example:
- *   1,1,1   => 1.7320508075688772
- *   3,3,3   => 5.196152422706632
- *   1,2,3   => 3.741657386773941
- */
+* Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
+*
+* @param {number} a
+* @param {number} b
+* @param {number} c
+* @return {number}
+*
+* @example:
+*   1,1,1   => 1.7320508075688772
+*   3,3,3   => 5.196152422706632
+*   1,2,3   => 3.741657386773941
+*/
 export function getParallelipidedDiagonal(a, b, c) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return Math.sqrt(Math.pow(a, 2)+Math.pow(c, 2)+Math.pow(b, 2) );
+  //throw new Error('Not implemented');
 }
 
 /**
- * Returns the number rounded to specified power of 10.
- *
- * @param {number} num
- * @param {number} pow
- * @return {number}
- *
- * @example:
- *   1234, 0  => 1234
- *   1234, 1  => 1230
- *   1234, 2  => 1200
- *   1234, 3  => 1000
- *   1678, 0  => 1678
- *   1678, 1  => 1680
- *   1678, 2  => 1700
- *   1678, 3  => 2000
- */
+* Returns the number rounded to specified power of 10.
+*
+* @param {number} num
+* @param {number} pow
+* @return {number}
+*
+* @example:
+*   1234, 0  => 1234
+*   1234, 1  => 1230
+*   1234, 2  => 1200
+*   1234, 3  => 1000
+*   1678, 0  => 1678
+*   1678, 1  => 1680
+*   1678, 2  => 1700
+*   1678, 3  => 2000
+*/
 export function roundToPowerOfTen(num, pow) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  let p = Math.pow(10, pow);
+  let dev = Math.round(num / p); 
+  return  dev * p;
+  //throw new Error('Not implemented');
 }
 
 /**
- * Returns true is the number is prime; otherwise false.
- * See: https://en.wikipedia.org/wiki/Primality_test
- *
- * @param {number} n
- * @return {bool}
- *
- * @example:
- *   4 => false
- *   5 => true
- *   6 => false
- *   7 => true
- *   11 => true
- *   12 => false
- *   16 => false
- *   17 => true
- */
+* Returns true is the number is prime; otherwise false.
+* See: https://en.wikipedia.org/wiki/Primality_test
+*
+* @param {number} n
+* @return {bool}
+*
+* @example:
+*   4 => false
+*   5 => true
+*   6 => false
+*   7 => true
+*   11 => true
+*   12 => false
+*   16 => false
+*   17 => true
+*/
 export function isPrime(n) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  if (n <= 1) return false;
+  else if (n <= 3) return true;
+  else if (((n % 2) === 0) || ((n % 3) === 0)) return false;
+  var i = 5;
+  while ((i * i) <= n) {
+    if ((n % i === 0) || (n % (i + 2) === 0)) return false;
+    i += 6;
+  }
+  return true;
+  //throw new Error('Not implemented');
 }
 
 /**
- * Tries to convert value to number and returns it if conversion was successfull;
- * otherwise returns default value passed as a second argument.
- *
- * @param {any} value
- * @param {any} def
- * @return {number}
- *
- * @example
- *   toNumber(null, 0) => 0
- *   toNumber('test', 0) => 0
- *   toNumber('1', 0) => 1
- *   toNumber(42, 0) => 42
- *   toNumber(new Number(42), 0) => 42
- */
+* Tries to convert value to number and returns it if conversion was successfull;
+* otherwise returns default value passed as a second argument.
+*
+* @param {any} value
+* @param {any} def
+* @return {number}
+*
+* @example
+*   toNumber(null, 0) => 0
+*   toNumber('test', 0) => 0
+*   toNumber('1', 0) => 1
+*   toNumber(42, 0) => 42
+*   toNumber(new Number(42), 0) => 42
+*/
 export function toNumber(value, def) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return Number.isNaN(Number.parseFloat(value)) ? def : Number.parseFloat(value) ;
+  //throw new Error('Not implemented');
 }

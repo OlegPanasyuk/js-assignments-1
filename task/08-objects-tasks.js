@@ -22,133 +22,161 @@
  *    console.log(r.getArea());   // => 200
  */
 export function Rectangle(width, height) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  this.width = width;
+  this.height = height;
+  this.getArea = () => this.width * this.height;
+
+// return {
+  //   width:width,
+  //   height:height,
+  //   getArea:  function() {
+  //     return width * height;
+  //   }
+  // };
+  //throw new Error('Not implemented');
 }
 
+Rectangle.prototype.getArea = () => this.width * this.height;
+
+// var r = new Rectangle(10,20);
+//      console.log(r.width);       // => 10
+//      console.log(r.height);      // => 20
+//      console.log(r.getArea());   // => 200
 
 /**
- * Returns the JSON representation of specified object
- *
- * @param {object} obj
- * @return {string}
- *
- * @example
- *    [1,2,3]   =>  '[1,2,3]'
- *    { width: 10, height : 20 } => '{"height":10,"width":20}'
- */
+* Returns the JSON representation of specified object
+*
+* @param {object} obj
+* @return {string}
+*
+* @example
+*    [1,2,3]   =>  '[1,2,3]'
+*    { width: 10, height : 20 } => '{"height":10,"width":20}'
+*/
 export function getJSON(obj) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  return JSON.stringify(obj);
+  //throw new Error('Not implemented');
 }
 
 
 /**
- * Returns the object of specified type from JSON representation
- *
- * @param {Object} proto
- * @param {string} json
- * @return {object}
- *
- * @example
- *    var r = fromJSON(Rectangle.prototype, '{"width":10, "height":20}');
- *
- */
+* Returns the object of specified type from JSON representation
+*
+* @param {Object} proto
+* @param {string} json
+* @return {object}
+*
+* @example
+*    var r = fromJSON(Rectangle.prototype, '{"width":10, "height":20}');
+*
+*/
 export function fromJSON(proto, json) {
-  /* implement your code here */
+  // let inp = JSON.parse(json);
+  // let obj = Object.assign(Object.create(proto), inp);
+  // for (let key in proto) 
+  // {
+  //   if (!obj.hasOwnProperty(key)) {
+  //     obj[key]=proto[key];
+  //   }
+  // }
+  // return obj;
+
   throw new Error('Not implemented');
 }
 
 
+
 /**
- * Css selectors builder
- *
- * Each complex selector can consists of type, id, class, attribute, pseudo-class and
- * pseudo-element selectors:
- *
- *    element#id.class[attr]:pseudoClass::pseudoElement
- *              \----/\----/\----------/
- *              Can be several occurences
- *
- * All types of selectors can be combined using the combinators ' ','+','~','>' .
- *
- * The task is to design a single class, independent classes or classes hierarchy and
- * implement the functionality
- * to build the css selectors using the provided cssSelectorBuilder.
- * Each selector should have the stringify() method to output the string repsentation
- * according to css specification.
- *
- * Provided cssSelectorBuilder should be used as facade only to create your own classes,
- * for example the first method of cssSelectorBuilder can be like this:
- *   element: function(value) {
- *       return new MySuperBaseElementSelector(...)...
- *   },
- *
- * The design of class(es) is totally up to you, but try to make it as simple, clear
- * and readable as possible.
- *
- * @example
- *
- *  var builder = cssSelectorBuilder;
- *
- *  builder.id('main').class('container').class('editable').stringify() =>
- *    '#main.container.editable'
- *
- *  builder.element('a').attr('href$=".png"').pseudoClass('focus').stringify() =>
- *    'a[href$=".png"]:focus'
- *
- *  builder.combine(
- *      builder.element('div').id('main').class('container').class('draggable'),
- *      '+',
- *      builder.combine(
- *          builder.element('table').id('data'),
- *          '~',
- *           builder.combine(
- *               builder.element('tr').pseudoClass('nth-of-type(even)'),
- *               ' ',
- *               builder.element('td').pseudoClass('nth-of-type(even)')
- *           )
- *      )
- *  ).stringify() =>
- *      'div#main.container.draggable + table#data ~ tr:nth-of-type(even) td:nth-of-type(even)'
- *
- *  For more examples see unit tests.
- */
+* Css selectors builder
+*
+* Each complex selector can consists of type, id, class, attribute, pseudo-class and
+* pseudo-element selectors:
+*
+*    element#id.class[attr]:pseudoClass::pseudoElement
+*              \----/\----/\----------/
+*              Can be several occurences
+*
+* All types of selectors can be combined using the combinators ' ','+','~','>' .
+*
+* The task is to design a single class, independent classes or classes hierarchy and
+* implement the functionality
+* to build the css selectors using the provided cssSelectorBuilder.
+* Each selector should have the stringify() method to output the string repsentation
+* according to css specification.
+*
+* Provided cssSelectorBuilder should be used as facade only to create your own classes,
+* for example the first method of cssSelectorBuilder can be like this:
+*   element: function(value) {
+*       return new MySuperBaseElementSelector(...)...
+*   },
+*
+* The design of class(es) is totally up to you, but try to make it as simple, clear
+* and readable as possible.
+*
+* @example
+*
+*  var builder = cssSelectorBuilder;
+*
+*  builder.id('main').class('container').class('editable').stringify() =>
+*    '#main.container.editable'
+*
+*  builder.element('a').attr('href$=".png"').pseudoClass('focus').stringify() =>
+*    'a[href$=".png"]:focus'
+*
+*  builder.combine(
+*      builder.element('div').id('main').class('container').class('draggable'),
+*      '+',
+*      builder.combine(
+*          builder.element('table').id('data'),
+*          '~',
+*           builder.combine(
+*               builder.element('tr').pseudoClass('nth-of-type(even)'),
+*               ' ',
+*               builder.element('td').pseudoClass('nth-of-type(even)')
+*           )
+*      )
+*  ).stringify() =>
+*      'div#main.container.draggable + table#data ~ tr:nth-of-type(even) td:nth-of-type(even)'
+*
+*  For more examples see unit tests.
+*/
 
 export const cssSelectorBuilder = {
+  arr : [],
+ 
 
   element(value) {
-    /* implement your code here */
+  /* implement your code here */
     throw new Error('Not implemented');
   },
 
   id(value) {
-    /* implement your code here */
+  /* implement your code here */
     throw new Error('Not implemented');
   },
 
   class(value) {
-    /* implement your code here */
+  /* implement your code here */
     throw new Error('Not implemented');
   },
 
   attr(value) {
-    /* implement your code here */
+  /* implement your code here */
     throw new Error('Not implemented');
   },
 
   pseudoClass(value) {
-    /* implement your code here */
+  /* implement your code here */
     throw new Error('Not implemented');
   },
 
   pseudoElement(value) {
-    /* implement your code here */
+  /* implement your code here */
     throw new Error('Not implemented');
   },
 
   combine(selector1, combinator, selector2) {
-    /* implement your code here */
-    throw new Error('Not implemented');
-  }
+  /* implement your code here */
+    throw new Error('Not implemented'); 
+  } 
 };
