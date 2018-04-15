@@ -25,8 +25,11 @@
  *
  */
 export function getComposition(f, g) {
+  return function(x) {
+    return f(g(x));
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -47,8 +50,11 @@ export function getComposition(f, g) {
  *
  */
 export function getPowerFunction(exponent) {
+  return function (x)  {
+    return Math.pow(x, exponent);
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -66,8 +72,18 @@ export function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 export function getPolynom() {
+  var args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
+  return function (x) {
+    let str = null;
+    if (args.length) {
+      for (let i = 0; i < args.length; i++) {
+        str += args[i] * Math.pow(x, args.length - i - 1); 
+      }
+    }
+    return str; 
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -86,8 +102,14 @@ export function getPolynom() {
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
 export function memoize(func) {
+  let obj = {};
+  let args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
+  if (args.length) {
+    obj.n = func();
+  } 
+  return () => obj.n;
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -107,8 +129,20 @@ export function memoize(func) {
  * retryer() => 2
  */
 export function retry(func, attempts) {
+  return function()
+  {
+    for(let i = 0; i < attempts; i++)
+    {
+      try{
+        return func();
+      }
+      catch(e){
+        continue;
+      }
+    }
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -136,8 +170,21 @@ export function retry(func, attempts) {
  *
  */
 export function logger(func, logFunc) {
+  return function()
+  {
+    let args  = Array.prototype.slice.call(arguments),
+      strArgs = [];
+      
+    args.forEach((val, i) => strArgs.push(JSON.stringify(val)));
+
+    logFunc(`${func.name}(${strArgs.join(',')}) starts`);
+    let result = func.apply(null, args);
+    logFunc(`${func.name}(${strArgs.join(',')}) ends`);
+
+    return result;
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -155,8 +202,21 @@ export function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 export function partialUsingArguments(fn) {
+  let args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
+  args.shift();
+  return function () {
+    let args2 = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
+    if (args2.length > 0) {
+      args2.forEach(
+        function(el) {
+          args.push(el);
+        }
+      );
+    }
+    return fn.apply(null, args);
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -178,6 +238,10 @@ export function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 export function getIdGeneratorFunction(startFrom) {
+  let n = startFrom;
+  return function() {
+    return n++;
+  };
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
