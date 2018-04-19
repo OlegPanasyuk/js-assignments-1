@@ -36,8 +36,53 @@
  *
  */
 export function parseBankAccount(bankAccount) {
+  let str = '';
+  let res = '';
+  let tmp = [];
+  let number = bankAccount.split('\n');
+  number = number.map(
+    function(el, i) {
+      return el.split('');
+    }
+  );
+  let numbers = ['246789', '69', '25678', '25689', '4569', '24589', '245789', '269', '2456789', '245689'];
+  number.map(
+    function(el, i, arr) {
+      if (i === 0) {
+        el.map(
+          function(e, j, ar) {
+            if (j % 3 === 0) {
+              tmp.push(ar[j]);
+              tmp.push(ar[j+1]);
+              tmp.push(ar[j+2]);
+              tmp.push(arr[i+1][j]);
+              tmp.push(arr[i+1][j+1]);
+              tmp.push(arr[i+1][j+2]);
+              tmp.push(arr[i+2][j]);
+              tmp.push(arr[i+2][j+1]);
+              tmp.push(arr[i+2][j+2]);  
+              tmp.map(
+                function(zz, y) {
+                  if (zz ==='_' || zz === '|') {
+                    str += '' + (y+1);
+                  }
+                  
+                }
+              );
+              res += '' + numbers.indexOf(str);
+              tmp = [];
+              str = '';
+            }
+            
+           
+          }
+        );
+      }
+    }
+  );
+  return res;
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
