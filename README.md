@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/it-shark-pro/js-assignments.svg?branch=master)](https://travis-ci.org/it-shark-pro/js-assignments)
+[![Build Status](https://travis-ci.org/OlegPanasyuk/js-assignments-1.svg?branch=master)](https://travis-ci.org/OlegPanasyuk/js-assignments-1)
 ![Hackage-Deps](https://img.shields.io/hackage-deps/v/lens.svg)
-[![Greenkeeper badge](https://badges.greenkeeper.io/it-shark-pro/js-assignments.svg)](https://greenkeeper.io/)
-[![GitHub release](https://img.shields.io/github/release/it-shark-pro/js-assignments.svg)](https://github.com/it-shark-pro/js-assignments/releases/latest)
+[![Greenkeeper badge](https://badges.greenkeeper.io/OlegPanasyuk/js-assignments-1.svg)](https://greenkeeper.io/)
+[![GitHub release](https://img.shields.io/github/release/OlegPanasyuk/js-assignments-1.svg)](https://github.com/OlegPanasyuk/js-assignments-1/releases/latest)
 
 
 # [Brest IT Shark](https://it-shark.pro/)
@@ -27,19 +27,19 @@ And the last idea is to inure trainees to work using unit test and feel uncomfor
 
 ### How to fork this repo
 * Click the **Fork** button at the top-right corner of this page and the repository will be copied to your own account.
-* Run `git clone https://github.com/<your-account>/js-assignments.git` from command line to download the repo.
+* Run `git clone https://github.com/<your-account>/js-assignments-1.git` from command line to download the repo.
 
 ### How to setup travis-ci
 * Open [https://travis-ci.org/](https://travis-ci.org/) and sign in with your github account.
-* Activate your forked repo **js-assignments**.
-* Edit local README.md file and update all links (just replace all occurrences of `'it-shark-pro'` with your account name).
+* Activate your forked repo **js-assignments-1**.
+* Edit local README.md file and update all links (just replace all occurrences of `'OlegPanasyuk'` with your account name).
 * Commit and push updated README.md to github:
 ```bash
   git add README.md
   git commit -m "Update the links"
   git push origin master
 ```
-* Open https://github.com/it-shark-pro/js-assignments and test the build icon. Now it will run all tests and update status once you push changes to github. Keep this icon green!
+* Open https://github.com/OlegPanasyuk/js-assignments-1 and test the build icon. Now it will run all tests and update status once you push changes to github. Keep this icon green!
 
 
 ### How to setup work environment
@@ -83,7 +83,7 @@ and run the unit tests again. Find one test failed (red). Now it's time to fix i
 * Implement the function by any way and verify your solution by running tests until the failed test become passed (green).
 * Your solution work, but now time to refactor it. Try to make your code as pretty and simple as possible keeping up the test green.
 * Once you can't improve your code and tests are passed you can commit your solution.
-* Push your updates to github server and check if tests passed on [travis-ci](https://travis-ci.org/it-shark-pro/js-assignments/builds).
+* Push your updates to github server and check if tests passed on [travis-ci](https://travis-ci.org/OlegPanasyuk/js-assignments-1/builds).
 * If everything is OK you can try to resolve the next task.
 
 ### How to debug tasks
