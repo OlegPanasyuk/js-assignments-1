@@ -121,24 +121,34 @@ node4.children = [ node5 ];
 node7.children = [ node8 ];
 
 export function* depthTraversalTree(root) {
-  // yield root;
-  // let arr = [{obj:root,discover:false}];
-  // while (arr.length >0) {
-  //     let v = arr.pop();
-  //     if (!v.discover) {
-  //         v.discover = true;
-  //         for (let i = 0 ; i < v.obj.children.length; i++) {
-  //             let temp = {
-  //                 obj:v.obj.children[i],
-  //                 discover:false
-  //             };
-  //             arr.push(temp);
-  //          }
-  //     }
-  // }
-  yield;
-  throw new Error('Not implemented');
+  yield root;
+  let arr = [{obj:root, discover:false}];
+  let j = 0;
+  while (arr.length > 0) {
+    j++;
+    let v = arr.pop();
+    if (!v.discover) {
+      v.discover = true;
+      if (v.obj.children) {
+        for (let i = v.obj.children.length-1 ; i >= 0; i--) {
+          let temp = {
+            obj:v.obj.children[i],
+            discover:false
+          };
+          arr.push(temp);
+        }
+      }
+      if (j === 1) {
+        continue;
+      } else {
+        yield v.obj;
+      }
+    }
+  }
+  
+  //throw new Error('Not implemented');
 }
+
 
 
 
@@ -164,41 +174,28 @@ export function* depthTraversalTree(root) {
 *
 */
 export function* breadthTraversalTree(root) {
-//   yield root;
-//   // объявляем очередь
-//   let arr = [{obj:root,d:false}];
-//   //пока очередь не пуста
-//   while (arr.length > 0) {
-//     //извлекаем из очереди элемент
-  
-//     // если узел не просмотрен
-//     while (!arr[arr.length-1].d) {
-//       //отмечаем просмотренным
-//       arr[arr.length-1].d = true;
-//       //проверяем на детей
+  let arr = new Map([[root, null]]);
     
-//       if (arr[arr.length-1].obj.children) {
-//         //запихиваем всех детей в очередь
-//         for (let i = 0; i < arr[arr.length-1].obj.children.length; i++) {
-//           //--------------
-//           let temp = {
-//             obj: arr[arr.length-1].obj.children[i],
-//             d:false
-//           }
-//           //--------------
-//           arr.unshift(temp);
-//         }
-//       }
-//     }
-//     let v = arr.pop();
-//     console.log(v.obj);
-//     if (arr.length == 0) return;
-//     yield arr[arr.length-1].obj;
+  while(arr.size > 0){
   
-//   }
-  yield;
-  throw new Error('Not implemented');
+    let tempMap = new Map();
+    
+    for (let key of arr.keys())
+    {
+      yield key;
+      
+      if(key.children){
+        key.children.forEach(val => 
+        {
+          tempMap.set(val, null);
+        });			
+      }
+    }
+    
+    arr = tempMap;
+  }
 }
+
 
 
 
@@ -216,6 +213,37 @@ export function* breadthTraversalTree(root) {
 *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
 */
 export function* mergeSortedSequences(source1, source2) {
-  yield;
-  throw new Error('Not implemented');
+  let g1 = source1();
+  let g2 = source2();
+  let n1, n2;
+  n1 = g1.next();
+  n2 = g2.next();
+  while(true) {  
+    if(n1.value < n2.value)
+    {
+      yield n1.value;
+      n1 = g1.next();
+    }
+    else if (n1.value > n2.value)
+    {
+      yield n2.value;
+      n2 = g2.next();
+    }
+    else
+    {
+      if(n1.value)
+      {
+        yield n1.value;
+        n1 = g1.next();
+      }
+      else
+      {
+        yield n2.value;
+        n2 = g2.next();
+      }
+    }
+
+
+  }
+  //throw new Error('Not implemented');
 }
