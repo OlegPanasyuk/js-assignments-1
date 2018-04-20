@@ -114,8 +114,21 @@ export function parseBankAccount(bankAccount) {
  *      'characters.'
  */
 export function* wrapText(text, columns) {
+  let arr = text.split(' ');
+  let temp = [];
+  let j = 0;
+  while (j < arr.length) {
+    if(temp.join(' ').length + arr[j].length < columns) {
+      temp.push(arr[j]);
+      j++;
+    } else {
+      yield temp.join(' ');
+      temp = [];
+    }
+  }
+  yield temp.join(' ');
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
@@ -152,6 +165,14 @@ export const PokerRank = {
 };
 
 export function getPokerHandRank(hand) {
+  //const ratingCard = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  //let arrPic = [];
+  let arrNum = [];
+  hand.map(function(el, i) {
+    let t = el.split('');
+    arrNum.push(t[0]);
+
+  });
   /* implement your code here */
   throw new Error('Not implemented');
 }
