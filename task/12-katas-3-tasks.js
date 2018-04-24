@@ -47,9 +47,65 @@ export function findStringInSnakingPuzzle(puzzle, searchStr) {
  *    'abc' => 'abc','acb','bac','bca','cab','cba'
  */
 export function* getPermutations(chars) {
+
+  let arr = [];
+  let n = chars.length;
+
+  for (let i = 0; i<n;i++) {
+    arr[i] = i+1;
+  }
+
+  function swap(i, j) {
+    let t = arr[i];
+    arr[i] = arr[j];
+    arr[j] = t;
+  }
+
+  function fact(n) {
+    let ret =1;
+    for (let i = 1; i<=n; i++) {
+      ret *= i;
+    }
+    return ret;
+  }
+  function nextPerm() {
+    let i;
+    for( i = arr.length-1; i>0; --i) {
+      if (arr[i] > arr[i-1]) {
+        let j;
+        for(j = arr.length-1;j>i; --j){
+          if (arr[j] > arr[i-1]) break;
+        }
+        swap(i-1, j);
+        break;
+      }
+    }
+      
+    for ( let j = arr.length - 1; j > i; --j, ++i ) {
+      swap(i, j);
+    } 
+  }
+
+  let z = fact(arr.length);
+  let a = [];
+  for(let k = 0; k<z;k++) {
+    let str = '';
+    for(let q = 0; q<chars.length; q++) {
+      str += chars[arr[q]-1];
+    }
+    nextPerm();
+  
+    a[k] =str;
+    yield a[k];
+    
+    
+  }
+
+ 
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
+
 
 
 /**

@@ -165,16 +165,74 @@ export const PokerRank = {
 };
 
 export function getPokerHandRank(hand) {
-  //const ratingCard = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-  //let arrPic = [];
+  const ratingCard = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  let pairs = 0;
+  let kThree = 0;
+  //let fourth = 0;
+  let arrPic = [];
   let arrNum = [];
+  let objPic = {
+    '♥' : 0,
+    '♦' : 0,
+    '♠' : 0,
+    '♣' : 0
+  };
+  let objNum = {'cardsinOrder' : 0,
+    '2' : 0, '3' : 0, '4' : 0, '5' : 0, '6' : 0, '7' : 0, '8' : 0, '9' : 0, '10' : 0, 'J' : 0, 'Q' : 0, 'K' : 0, 'A' : 0
+  };
+
   hand.map(function(el, i) {
     let t = el.split('');
     arrNum.push(t[0]);
-
+    arrPic.push(t[1]);
+    objPic[t[1]]++;
+    objNum[t[0]]++;
   });
+  arrNum = arrNum.map(
+    function(el, i) {
+      return ratingCard.indexOf(el);
+    }
+  );
+  arrNum = arrNum.sort(
+    function(a, b) {
+      return a - b;
+    }
+  );
+  for (let key in objNum) {
+     
+    if (objNum[key] === 2) {
+      pairs++;
+    }
+    if((objNum[key] === 3)) {
+      kThree++;
+    }
+    if((objNum[key] === 4)) {
+      //fourth++;
+    }
+    if (pairs === 1 && kThree === 1) {
+      return PokerRank.FullHouse;
+    } else if (pairs === 2) {
+      return PokerRank.TwoPairs;
+    } 
+
+  }
+
+  function isStraight() {
+    // let straight = true;
+    // for (let i of ratingCard) {
+    //   //console.log(i);
+    // }
+  }
+  //    for (let key in objPic) {
+  //         if (objPic[key] === 5) {
+  //             return 'it maybe flush or straight flush';
+  //         } 
+  //    }
+
+  isStraight();
+  return objNum;
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 
