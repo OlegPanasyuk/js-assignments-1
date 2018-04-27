@@ -249,8 +249,26 @@ export function* getPermutations(chars) {
  *    [ 1, 6, 5, 10, 8, 7 ] => 18  (buy at 1,6,5 and sell all at 10)
  */
 export function getMostProfitFromStockQuotes(quotes) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  let profit = 0, i, maxPrice;
+
+  while(quotes.length > 0)
+  {
+    i = 0;
+    
+    maxPrice = quotes.reduce((val1, val2) => val1 > val2 ? val1 : val2);
+    
+    while(quotes[i] < maxPrice)
+    {
+      profit -= quotes[i];
+      i++;
+    }
+
+    profit += maxPrice * (i);
+
+    quotes = quotes.slice(i+1);
+  }
+
+  return profit;
 }
 
 

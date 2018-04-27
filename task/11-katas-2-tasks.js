@@ -168,7 +168,7 @@ export function getPokerHandRank(hand) {
   const ratingCard = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
   let pairs = 0;
   let kThree = 0;
-  //let fourth = 0;
+  let fourth = 0;
   let arrPic = [];
   let arrNum = [];
   let objPic = {
@@ -183,10 +183,17 @@ export function getPokerHandRank(hand) {
 
   hand.map(function(el, i) {
     let t = el.split('');
-    arrNum.push(t[0]);
-    arrPic.push(t[1]);
-    objPic[t[1]]++;
-    objNum[t[0]]++;
+    if (t.length > 2) {
+      arrNum.push(t[0]+t[1]);
+      arrPic.push(t[2]);
+      objPic[t[2]]++;
+      objNum[t[0]+t[1]]++;
+    } else {
+      arrNum.push(t[0]);
+      arrPic.push(t[1]);
+      objPic[t[1]]++;
+      objNum[t[0]]++;
+    }
   });
   arrNum = arrNum.map(
     function(el, i) {
@@ -198,6 +205,14 @@ export function getPokerHandRank(hand) {
       return a - b;
     }
   );
+  if (objNum.hasOwnProperty('A')) {
+    if (objNum.hasOwnProperty('K')) {
+      if (objNum.K>0) {
+        arrNum.shift();
+        arrNum.push(13);
+      }
+    }
+  }
   for (let key in objNum) {
      
     if (objNum[key] === 2) {
@@ -207,30 +222,53 @@ export function getPokerHandRank(hand) {
       kThree++;
     }
     if((objNum[key] === 4)) {
-      //fourth++;
+      fourth++;
     }
-    if (pairs === 1 && kThree === 1) {
-      return PokerRank.FullHouse;
-    } else if (pairs === 2) {
-      return PokerRank.TwoPairs;
-    } 
+    
 
   }
 
   function isStraight() {
-    // let straight = true;
-    // for (let i of ratingCard) {
-    //   //console.log(i);
-    // }
+    let straight = false;
+    let sum = 0;
+    arrNum.map(
+      function(el, i, arr) {
+        if (i > 0) {
+          sum += el - arr[i-1];
+        }
+      }
+    );
+    if(sum === 4) {
+      straight = true;
+    }
+    return straight;
   }
-  //    for (let key in objPic) {
-  //         if (objPic[key] === 5) {
-  //             return 'it maybe flush or straight flush';
-  //         } 
-  //    }
 
-  isStraight();
-  return objNum;
+  for (let key in objPic) {
+    if (objPic[key] === 5) {
+      if (isStraight()) {
+        return PokerRank.StraightFlush;
+      } else {
+        return PokerRank.Flush;
+      }
+    } 
+  }
+  
+  if (fourth === 1) {
+    return PokerRank.FourOfKind;
+  } else if (pairs === 1 && kThree === 1) {
+    return PokerRank.FullHouse;
+  } else if (pairs === 2) {
+    return PokerRank.TwoPairs;
+  } else if (kThree === 1) {
+    return PokerRank.ThreeOfKind;
+  } else if (pairs === 1) {
+    return PokerRank.OnePair;
+  } else if (isStraight()) {
+    return PokerRank.Straight;
+  } 
+     
+  return PokerRank.HighCard;
   /* implement your code here */
   //throw new Error('Not implemented');
 }
