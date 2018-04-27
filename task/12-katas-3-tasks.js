@@ -28,9 +28,132 @@
  *   'NULL'      => false
  */
 export function findStringInSnakingPuzzle(puzzle, searchStr) {
-  /* implement your code here */
-  throw new Error('Not implemented');
+  let obj = new Graph (puzzle, searchStr);
+  
+  return  obj.findWord();
 }
+
+function Graph (puzzle, searchStr) {
+  this.puzzle = puzzle.map(
+    function(el, i) {
+      return el.split('');
+    }
+  );
+  this.puzzle = this.puzzle.map(function (el, i) {
+    return el.map(
+      function(e, j) {
+        return new Vertex(e, i, j);
+      }
+    );
+  });
+  this.searchStr = searchStr;
+  this.height = this.puzzle.length;
+  this.width = this.puzzle[0].length;
+  this.answer = false;
+} 
+
+Graph.prototype = {
+  move(v, index) {
+   
+    
+    if (v.Visited || !v.Enabled) {
+      return;
+    }
+
+    if (index === this.searchStr.length && this.searchStr[index-1]===v.literal) {
+      this.answer =  true;
+
+      //console.log('hurra!',v.literal,index);
+      return;
+    }
+    //console.log('index=',index,'v.x=',v.x,'v.y=',v.y,'v.litaral=',v.literal,'searchStr : ',this.searchStr);
+    v.targets = this.getTargets(v);
+    v.Visited = true;
+
+    for (let z = 0; z <= v.targets.length - 1; z++) {
+      if(v.targets[z].Enabled) {
+        if (v.targets[z].literal === this.searchStr[index]) {
+          (function(self) {
+            let q = index;
+            q++;
+            v.Enabled = false;
+            self.move(v.targets[z], q++);
+          })(this);
+        }
+      }
+    }
+
+
+  },
+  findWord() {
+    
+    let self = this;
+    this.puzzle.forEach(function(el, i) {
+      el.forEach(function(e, j) {
+        
+        if (e.literal === self.searchStr[0]) {
+          self.move(e, 1);
+          //console.log('NEW ITTERATIOn');
+        }
+
+      });
+    });
+    return this.answer;
+  },
+
+  getTargets(v) {
+    let arr = [];
+    if ((v.x - 1) >=0 && 
+      !this.puzzle[v.y][v.x-1].Visited) {
+      arr.push(this.puzzle[v.y][v.x-1]);
+    }
+    if ((v.x + 1) <= this.width - 1 && 
+      !this.puzzle[v.y][v.x + 1].Visited) {
+      arr.push(this.puzzle[v.y][v.x + 1]);
+    }
+    if ((v.y - 1) >= 0 &&
+      !this.puzzle[v.y - 1][v.x].Visited) {
+      arr.push(this.puzzle[v.y - 1][v.x]);
+    }
+    if ((v.y + 1) <= this.height - 1 &&
+      !this.puzzle[v.y + 1][v.x].Visited) {
+      arr.push(this.puzzle[v.y + 1][v.x]);
+    }
+    return arr;
+  }
+};
+
+function Vertex(literal, i, j) {
+  this.x = j;
+  this.y = i;
+  this.visit = false;
+  this.enable = true;
+  this.literal = literal;
+  this.targets = [];
+}
+
+Vertex.prototype = {
+  get Enabled() {
+    return this.enable;
+  },
+  set Enabled(val) {
+    if (typeof val === 'boolean'){
+      this.enable = val;
+    } else {
+      throw new Error('Incorrect type of val in setter Enabled');
+    }
+  },
+  get Visited() {
+    return this.visit;
+  },
+  set Visited(val) {
+    if (typeof val === 'boolean'){
+      this.visit = val;
+    } else {
+      throw new Error('Incorrect type of val in setter Visited');
+    }
+  }
+};
 
 
 /**
