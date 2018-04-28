@@ -30,8 +30,19 @@ export function distinctLettersString(value1, value2) {
  */
 
 export function lowerLetters(value) {
+  let re = /[a-z]/g;
+  let obj = {};
+  let arr = value.match(re);
+  for (let i = 0; i < arr.length; i++) {
+    if (obj.hasOwnProperty(arr[i])) {
+      obj[arr[i]]++;
+    } else {
+      obj[arr[i]] = 1;
+    }
+  }
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
+  return obj;
 }
 
 /**
@@ -53,8 +64,39 @@ export function lowerLetters(value) {
  */
 
 export function titleCaseConvert(title, minorWords) {
+  let str = title.split(' ');
+  let minor;
+  if(minorWords) { 
+    minor  = minorWords.split(' ').map((el, j) => el.toLowerCase());
+  } else {
+    minor = [];
+  }
+  //console.log(str, minor);
+
+  str = str.map(
+    function(el, j) {
+      let temp;
+      if (j === 0) {
+        temp = el.toLowerCase();
+        temp = temp.split('');
+        temp[0] = temp[0].toUpperCase();
+        return temp.join('');
+      } else {
+        temp = el.toLowerCase();
+        if (minor.indexOf(temp) >= 0) {
+          return temp;
+        } else {
+          temp = temp.split('');
+          temp[0] = temp[0].toUpperCase();
+          return temp.join('');
+        }
+      }
+    }
+  );
+  //console.log(str, minor);
+  return str.join(' ');
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 /**
@@ -75,6 +117,28 @@ export function titleCaseConvert(title, minorWords) {
  */
 
 export function calcRPN(expr) {
+  
+  if (expr.length <= 0) {
+    return 0;
+  }
+  let stack = [];
+  let str = expr.split(' ');
+  let reD = /\d/;
+  let reO = /[+-/*]/;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i].match(reD)) {
+      stack.push(str[i]);
+    } else if (str[i].match(reO)) {
+      let a = stack.pop();
+      let b = stack.pop();
+      let tmp = b + str[i] + a;
+      let c = eval(tmp).toString();
+      stack.push(c);
+    } 
+
+  }
+  //console.log(str);
   /* implement your code here */
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
+  return stack.pop();
 }
