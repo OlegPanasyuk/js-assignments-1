@@ -20,9 +20,9 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
+
 export function getRectangleArea(width, height) {
-  return width*height;
-  
+  return width * height;
 }
 
 
@@ -38,8 +38,7 @@ export function getRectangleArea(width, height) {
 *   0    => 0
 */
 export function getCicleCircumference(radius) {
-  return Math.PI*2*radius;
-  
+  return Math.PI * 2 * radius;  
 }
 
 /**
@@ -55,8 +54,7 @@ export function getCicleCircumference(radius) {
 *  -3, 3  => 0
 */
 export function getAverage(value1, value2) {
-  return (value1/2 + value2/2);
-  
+  return (value1 / 2 + value2 / 2);
 }
 
 /**
@@ -75,8 +73,7 @@ export function getAverage(value1, value2) {
 *   (-5,0) (10,-10) => 18.027756377319946
 */
 export function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2)); 
-  
+  return Math.hypot(x2 - x1, y2 - y1);  
 }
 
 /**
@@ -92,8 +89,7 @@ export function getDistanceBetweenPoints(x1, y1, x2, y2) {
 *   5*x = 0         => 0
 */
 export function getLinearEquationRoot(a, b) {
-  return -b/a;
-  
+  return -b / a;
 }
 
 
@@ -116,11 +112,10 @@ export function getLinearEquationRoot(a, b) {
 *   (0,1) (1,2)     => 0
 */
 export function getAngleBetweenVectors(x1, y1, x2, y2) {
-  let sk = x1*x2+y1*y2;
-  let m1 = Math.sqrt(x1*x1+y1*y1);
-  let m2 = Math.sqrt(x2*x2+y2*y2);
-  return Math.acos(sk/(m1*m2));
-  
+  let sk = x1 * x2 + y1 * y2;
+  let m1 = Math.sqrt(x1 * x1 + y1 * y1);
+  let m2 = Math.sqrt(x2 * x2 + y2 * y2);
+  return Math.acos(sk / (m1 * m2)); 
 }
 
 /**
@@ -137,9 +132,7 @@ export function getAngleBetweenVectors(x1, y1, x2, y2) {
 */
 export function getLastDigit(value) {
   let s = value.toString();
-  //return value % 10;
-  return parseInt(s[s.length-1]);
-  //throw new Error('Not implemented');
+  return parseInt(s[s.length - 1]);
 }
 
 
@@ -156,7 +149,6 @@ export function getLastDigit(value) {
 */
 export function parseNumberFromString(value) {
   return Number.parseFloat(value);
-  //throw new Error('Not implemented');
 }
 
 /**
@@ -173,8 +165,7 @@ export function parseNumberFromString(value) {
 *   1,2,3   => 3.741657386773941
 */
 export function getParallelipidedDiagonal(a, b, c) {
-  return Math.sqrt(Math.pow(a, 2)+Math.pow(c, 2)+Math.pow(b, 2) );
-  //throw new Error('Not implemented');
+  return Math.sqrt(Math.pow(a, 2) + Math.pow(c, 2) + Math.pow(b, 2) );
 }
 
 /**
@@ -198,7 +189,6 @@ export function roundToPowerOfTen(num, pow) {
   let p = Math.pow(10, pow);
   let dev = Math.round(num / p); 
   return  dev * p;
-  //throw new Error('Not implemented');
 }
 
 /**
@@ -228,7 +218,6 @@ export function isPrime(n) {
     i += 6;
   }
   return true;
-  //throw new Error('Not implemented');
 }
 
 /**
@@ -248,5 +237,4 @@ export function isPrime(n) {
 */
 export function toNumber(value, def) {
   return Number.isNaN(Number.parseFloat(value)) ? def : Number.parseFloat(value) ;
-  //throw new Error('Not implemented');
 }
