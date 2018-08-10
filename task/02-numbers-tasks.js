@@ -131,8 +131,7 @@ export function getAngleBetweenVectors(x1, y1, x2, y2) {
 *     0     => 0
 */
 export function getLastDigit(value) {
-  let s = value.toString();
-  return parseInt(s[s.length - 1]);
+  return value % 10;
 }
 
 
@@ -148,7 +147,7 @@ export function getLastDigit(value) {
 * '-525.5'     => -525.5
 */
 export function parseNumberFromString(value) {
-  return Number.parseFloat(value);
+  return +value;
 }
 
 /**
