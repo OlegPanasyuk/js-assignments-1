@@ -58,14 +58,7 @@ export function parseDataFromIso8601(value) {
 */
 export  function isLeapYear(date) {
   let year = date.getFullYear(); 
-  if (year % 4 !== 0) {
-    return false;
-  } else if (year % 100 !== 0) {
-    return true;
-  } else if (year % 400 !== 0) {
-    return false;
-  } else return true;
-  //throw new Error('Not implemented');
+  return (year % 4 === 0) && ((year % 100 !== 0) || (year % 400 === 0));
 }
 
 
@@ -85,14 +78,8 @@ export  function isLeapYear(date) {
 *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
 */
 export function timeSpanToString(startDate, endDate) {
-  var span = new Date(endDate - startDate);
-  var temp ='';
-  temp += (span.getUTCHours() < 10) ? '0'+span.getUTCHours()+':' : span.getUTCHours()+':';
-  temp += (span.getUTCMinutes() < 10) ? '0'+span.getUTCMinutes()+':' : span.getUTCMinutes()+':';
-  temp += (span.getUTCSeconds() < 10) ? '0'+span.getUTCSeconds()+'.' : span.getUTCSeconds()+'.'; 
-  temp += (span.getUTCMilliseconds() < 10) ? '00'+span.getUTCMilliseconds() : span.getUTCMilliseconds(); 
-  return temp;
-  //throw new Error('Not implemented');
+  let span = new Date(endDate - startDate);
+  return span.toISOString().slice(11, 23);
 }
 
 
