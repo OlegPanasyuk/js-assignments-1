@@ -164,7 +164,7 @@ export function parseNumberFromString(value) {
 *   1,2,3   => 3.741657386773941
 */
 export function getParallelipidedDiagonal(a, b, c) {
-  return Math.sqrt(Math.pow(a, 2) + Math.pow(c, 2) + Math.pow(b, 2) );
+  return Math.hypot(a, b, c);
 }
 
 /**
@@ -185,9 +185,8 @@ export function getParallelipidedDiagonal(a, b, c) {
 *   1678, 3  => 2000
 */
 export function roundToPowerOfTen(num, pow) {
-  let p = Math.pow(10, pow);
-  let dev = Math.round(num / p); 
-  return  dev * p;
+  const p = Math.pow(10, pow);
+  return  Math.round(num / p) * p;
 }
 
 /**
@@ -211,7 +210,7 @@ export function isPrime(n) {
   if (n <= 1) return false;
   else if (n <= 3) return true;
   else if (((n % 2) === 0) || ((n % 3) === 0)) return false;
-  var i = 5;
+  let i = 5;
   while ((i * i) <= n) {
     if ((n % i === 0) || (n % (i + 2) === 0)) return false;
     i += 6;
@@ -235,5 +234,5 @@ export function isPrime(n) {
 *   toNumber(new Number(42), 0) => 42
 */
 export function toNumber(value, def) {
-  return Number.isNaN(Number.parseFloat(value)) ? def : Number.parseFloat(value) ;
+  return Number.isNaN(+value) ? def : +value;
 }
