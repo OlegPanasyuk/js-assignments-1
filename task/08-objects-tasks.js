@@ -25,23 +25,9 @@ export function Rectangle(width, height) {
   this.width = width;
   this.height = height;
   this.getArea = () => this.width * this.height;
-
-// return {
-  //   width:width,
-  //   height:height,
-  //   getArea:  function() {
-  //     return width * height;
-  //   }
-  // };
-  //throw new Error('Not implemented');
 }
 
 Rectangle.prototype.getArea = () => this.width * this.height;
-
-// var r = new Rectangle(10,20);
-//      console.log(r.width);       // => 10
-//      console.log(r.height);      // => 20
-//      console.log(r.getArea());   // => 200
 
 /**
 * Returns the JSON representation of specified object
@@ -55,7 +41,6 @@ Rectangle.prototype.getArea = () => this.width * this.height;
 */
 export function getJSON(obj) {
   return JSON.stringify(obj);
-  //throw new Error('Not implemented');
 }
 
 
@@ -80,7 +65,6 @@ export function fromJSON(proto, json) {
   //   }
   // }
   // return obj;
-
   throw new Error('Not implemented');
 }
 
@@ -152,34 +136,26 @@ export const cssSelectorBuilder = {
     if (!this.Element && this.arr.length === 0)  {
       this.selectors += '' + value;
       this.arr.push('element');
-      
     } else if (this.Element) {
       throw new Error ('Element, id and pseudo-element should not occur more then one time inside the selector');
     } else {
-      //debugger;
       throw  new Error ('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
     }
     this.Element = true;
     return this.getObj(this, this.selectors, this.arr); 
-  /* implement your code here */
-    //throw new Error('Not implemented');
   },
 
   id(value) {
     if (!this.idElement && ((this.arr.length === 0) || (this.arr.length === 1 && this.arr[this.arr.length-1] === 'element'))) {
       this.selectors += '#' + value; 
       this.arr.push('id');  
-      //debugger;
     } else if (this.idElement) {
       throw new Error ('Element, id and pseudo-element should not occur more then one time inside the selector');
     } else {
-      //debugger;
       throw  new Error ('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
     }
     this.idElement = true;
     return this.getObj(this, this.selectors, this.arr); 
-    /* implement your code here */
-    //throw new Error('Not implemented');
   },
 
   class(value) {
@@ -198,21 +174,15 @@ export const cssSelectorBuilder = {
     } else {
       throw  new Error ('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
     }
-     
-    
-    /* implement your code here */
-    //throw new Error('Not implemented');
   },
 
   attr(value) {
     let flag  = true;
-    this.arr.forEach(
-      function(el) {
-        if (el === 'pseudo-element' || el === 'pseudo-class') {
-          flag = false;
-        }
+    this.arr.forEach(el => {
+      if (el === 'pseudo-element' || el === 'pseudo-class') {
+        flag = false;
       }
-    );
+    });
     if (flag) {
       this.selectors += '[' + value + ']';
       this.arr.push('attrb'); 
@@ -220,20 +190,15 @@ export const cssSelectorBuilder = {
     } else {
       throw  new Error ('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
     }
-    /* implement your code here */
-    //throw new Error('Not implemented');
   },
 
   pseudoClass(value) {
     let flag = true;
-    this.arr.forEach(
-      function(el) {
-        if (el === 'pseudo-element') {
-          flag = false;
-        }
+    this.arr.forEach(el => {
+      if (el === 'pseudo-element') {
+        flag = false;
       }
-    );
-
+    });
     if (flag){
       this.selectors += ':' + value; 
       this.arr.push('pseudo-class');
@@ -241,9 +206,6 @@ export const cssSelectorBuilder = {
     } else {
       throw  new Error ('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
     }
-   
-    /* implement your code here */
-    //throw new Error('Not implemented');
   },
 
   pseudoElement(value) {
@@ -255,16 +217,12 @@ export const cssSelectorBuilder = {
     } else {
       throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
     }
-    /* implement your code here */
-    //throw new Error('Not implemented');
   },
 
   combine(selector1, combinator, selector2) {
     this.selectors += selector1.stringify() + ' ' + combinator + ' ' + selector2.stringify();
     let tempObj =this.getObj(this, this.selectors, this.arr); 
     return tempObj;
-    /* implement your code here */
-    //throw new Error('Not implemented'); 
   },
   
   getObj(obj, selectors, arrname) {

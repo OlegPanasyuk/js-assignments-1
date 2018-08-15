@@ -41,7 +41,6 @@ export function* get99BottlesOfBeer() {
     yield  'No more bottles of beer on the wall, no more bottles of beer.';
     yield `Go to the store and buy some more, ${bottles = 99} bottles of beer on the wall.`;
   }
-  //throw new Error('Not implemented');
 }
 
 // let jjj = get99BottlesOfBeer();
@@ -78,7 +77,6 @@ export function* getFibonacciSequence() {
     i++;
     yield temp;
   }
-  //throw new Error('Not implemented');
 }
 
 
@@ -145,8 +143,6 @@ export function* depthTraversalTree(root) {
       }
     }
   }
-  
-  //throw new Error('Not implemented');
 }
 
 
@@ -175,11 +171,8 @@ export function* depthTraversalTree(root) {
 */
 export function* breadthTraversalTree(root) {
   let arr = new Map([[root, null]]);
-    
   while(arr.size > 0){
-  
     let tempMap = new Map();
-    
     for (let key of arr.keys())
     {
       yield key;
@@ -191,7 +184,6 @@ export function* breadthTraversalTree(root) {
         });			
       }
     }
-    
     arr = tempMap;
   }
 }
@@ -242,8 +234,5 @@ export function* mergeSortedSequences(source1, source2) {
         n2 = g2.next();
       }
     }
-
-
   }
-  //throw new Error('Not implemented');
 }

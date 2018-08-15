@@ -28,8 +28,6 @@ export function getComposition(f, g) {
   return function(x) {
     return f(g(x));
   };
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
@@ -53,8 +51,6 @@ export function getPowerFunction(exponent) {
   return function (x)  {
     return Math.pow(x, exponent);
   };
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
@@ -82,8 +78,6 @@ export function getPolynom() {
     }
     return str; 
   };
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
@@ -108,8 +102,6 @@ export function memoize(func) {
     obj.n = func();
   } 
   return () => obj.n;
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
@@ -141,8 +133,6 @@ export function retry(func, attempts) {
       }
     }
   };
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
@@ -170,21 +160,15 @@ export function retry(func, attempts) {
  *
  */
 export function logger(func, logFunc) {
-  return function()
-  {
+  return function()  {
     let args  = Array.prototype.slice.call(arguments),
-      strArgs = [];
-      
+      strArgs = [];  
     args.forEach((val, i) => strArgs.push(JSON.stringify(val)));
-
     logFunc(`${func.name}(${strArgs.join(',')}) starts`);
     let result = func.apply(null, args);
     logFunc(`${func.name}(${strArgs.join(',')}) ends`);
-
     return result;
   };
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
@@ -215,8 +199,6 @@ export function partialUsingArguments(fn) {
     }
     return fn.apply(null, args);
   };
-  /* implement your code here */
-  //throw new Error('Not implemented');
 }
 
 
